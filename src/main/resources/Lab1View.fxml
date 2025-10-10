@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lyutov.labs_fx.features.lab1.Lab1Controller"
+            prefHeight="400.0" prefWidth="600.0"
+            spacing="8" style="-fx-padding:10;">
+    <HBox spacing="8">
+        <Button fx:id="runButton" text="Отправить героя"/>
+        <Button text="Очистить" onAction="#onClear"/>
+    </HBox>
+    <HBox spacing="5">
+        <Label text="Способ передвижения:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="movementSelector"
+                  prefWidth="150"
+                  promptText="Выберите способ передвижения"/>
+        <ComboBox fx:id="citiesSelector"
+                  prefWidth="150"
+                  promptText="Выберите город"/>
+    </HBox>
+    <Label text="Консоль вывода:"/>
+    <TextArea fx:id="consoleArea" editable="false" prefHeight="500"/>
+</VBox>

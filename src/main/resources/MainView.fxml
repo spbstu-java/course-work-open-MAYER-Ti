@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyutov.labs_fx.ui.MainController">
+    <left>
+        <VBox prefWidth="220.0" spacing="10.0" style="-fx-padding:10;">
+            <Label text="Задачи"/>
+            <ListView fx:id="tasksList" prefHeight="600.0"/>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentPane" style="-fx-padding:10;">
+            <!-- content loaded dynamically -->
+        </StackPane>
+    </center>
+</BorderPane>
