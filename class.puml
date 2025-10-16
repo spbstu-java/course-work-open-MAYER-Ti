@@ -1,0 +1,180 @@
+@startuml
+!theme plain
+
+package "com.lyutov.labs_fx.features.lab1" {
+  interface Movement {
+    + void moveToPoint(Point)
+  }
+
+  class HorseMovement implements Movement {
+    + void moveToPoint(Point)
+  }
+
+  class LegsMovement implements Movement {
+    + void moveToPoint(Point)
+  }
+
+  class Point {
+    + String name
+    + double lat
+    + double lon
+    + String toString()
+  }
+
+  class Hero {
+    - Point dislocation
+    - Movement movement
+    + void move(Point)
+    + Movement getMovement()
+    + void setMovement(Movement)
+    + Point getDislocation()
+  }
+
+  class Lab1Controller {
+    - TextArea consoleArea
+    - Button runButton
+    - ComboBox<String> movementSelector
+    - ComboBox<String> citiesSelector
+    - ResultPrinter resultPrinter
+    ~ HorseMovement horse
+    ~ LegsMovement legs
+    ~ Point[] cities
+    ~ Hero aleshaPopovich
+    + void setResultPrinter(ResultPrinter)
+    + void initialize()
+    + void moveHero()
+    + void onClear()
+    - Movement stringToMovement(String)
+  }
+}
+
+package "com.lyutov.labs_fx.features.lab2" {
+  class Lab2Controller {
+    - TextArea consoleArea
+    - Button runButton
+    - ResultPrinter resultPrinter
+    + void setResultPrinter(ResultPrinter)
+    + void initialize()
+    + void run()
+    + void onClear()
+    - {static} Object createInstance(Class<?>)
+    - {static} Object[] buildDefaultArgs(Class<?>[])
+    - {static} Object defaultValue(Class<?>)
+  }
+
+  class DemoService {
+    - ResultPrinter resultPrinter
+    + void setResultPrinter(ResultPrinter)
+    - void print(String)
+    + void greet(String)
+    + int sum(int,int)
+    # void logAction(String,int)
+    # int square(int)
+    - String secretConcat(String,String,String)
+    - {static} void staticSecret(int,boolean)
+  }
+}
+
+package "com.lyutov.labs_fx.features.lab3" {
+  class Translator {
+    - Map<String,String> dictionary
+    + void setDictionary(Map<String,String>)
+    + String translate(String)
+  }
+
+  class DictionaryLoader {
+    - Map<String,String> dictionary
+    + Map<String,String> getDictionary()
+    + void load(String)
+  }
+
+  class Lab3Controller {
+    - TextArea consoleArea
+    - Button runButton
+    - TextArea langBook
+    - TextArea langQuery
+    - ResultPrinter resultPrinter
+    + void setResultPrinter(ResultPrinter)
+    + void initialize()
+    + void run()
+    + void onClear()
+  }
+
+  class InvalidFileFormatException extends Exception {
+  }
+
+  class FileReadException extends Exception {
+  }
+}
+
+package "com.lyutov.labs_fx.features.lab4" {
+  class Lab4Controller {
+    - TextArea consoleArea
+    - Button runButton
+    - TextArea numbersArea
+    - TextArea stringsArea
+    - ResultPrinter resultPrinter
+    + void setResultPrinter(ResultPrinter)
+    + void initialize()
+    + void run()
+    + void onClear()
+    + {static} double average(List<Integer>)
+    + {static} List<String> toUpperWithPrefix(List<String>)
+    + {static} List<Integer> uniqueSquares(List<Integer>)
+    + {static} T lastElement(Collection<T>)
+    + {static} int sumEven(int[])
+    + {static} Map<Character,String> toMap(List<String>)
+  }
+}
+
+package "com.lyutov.labs_fx.ui" {
+  class MainController {
+    - ListView<String> tasksList
+    - StackPane contentPane
+    - ResultPrinter resultPrinter
+    - Map<String,FXMLLoader> loaders
+    + void initialize()
+    - void showTask(String)
+  }
+}
+
+package "com.lyutov.labs_fx.core" {
+  class ResultPrinter {
+    - TextArea console
+    + void bindTo(TextArea)
+    + void unbind()
+    + void println(String)
+    + void clear()
+  }
+}
+
+class App extends javafx.application.Application {
+  + void start(Stage)
+  + {static} void main(String[])
+}
+
+' Связи между классами
+Lab1Controller --> ResultPrinter
+Lab2Controller --> ResultPrinter
+Lab3Controller --> ResultPrinter
+Lab4Controller --> ResultPrinter
+MainController --> ResultPrinter
+
+Lab1Controller --> Hero
+Lab1Controller --> Movement
+Hero --> Movement
+Hero --> Point
+
+Lab3Controller --> Translator
+Translator --> DictionaryLoader
+DictionaryLoader ..> FileReadException
+DictionaryLoader ..> InvalidFileFormatException
+
+MainController --> Lab1Controller
+MainController --> Lab2Controller
+MainController --> Lab3Controller
+MainController --> Lab4Controller
+
+Lab2Controller --> DemoService
+
+@enduml
