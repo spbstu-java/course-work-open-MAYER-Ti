@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.lyutov.labs_fx.features.lab4.Lab4Controller"
+            spacing="8" style="-fx-padding:10;">
+    <HBox spacing="8">
+        <VBox spacing="8">
+            <Button fx:id="runButton" text="Запустить" minWidth="70"/>
+            <Button text="Очистить" onAction="#onClear" minWidth="70"/>
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Числа:"/>
+            <TextArea fx:id="numbersArea"/>
+        </VBox>
+        <VBox spacing="8">
+            <Label text="Слова:"/>
+            <TextArea fx:id="stringsArea"/>
+        </VBox>
+    </HBox>
+    <Label text="Консоль вывода:"/>
+    <TextArea fx:id="consoleArea" editable="false" prefHeight="500"/>
+</VBox>
